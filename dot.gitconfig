@@ -1,0 +1,15 @@
+[user]
+	name = Nicolas Thouvenin
+	email = nthouvenin@gmail.com
+[color]
+	diff = auto
+	status = auto
+	branch = auto
+	interactive = auto
+ 
+[alias]
+  st = status
+  di = diff
+  co = checkout
+  ci = commit
+  br = branch

@@ -1,0 +1,33 @@
+# --------------------------------------------------------------------
+#
+# $Id: .Xresources,v 1.4 2003/06/14 12:59:01 thouveni Exp $
+#
+#
+# Download <URL:http://touv.ouvaton.org/documents/MyDotFiles/.Xresources>
+#
+# --------------------------------------------------------------------
+
+aterm*foreground: black
+aterm*background: gray99
+aterm*cursorColor: red 
+aterm*saveLines: 4096
+aterm*scrollBar: true
+aterm*scrollBar_right: true
+!aterm*transparent: true
+!aterm*shading: 35
+!aterm*font: fixed 
+aterm*geometry: 120x40+100+100
+aterm*loginShell: true
+aterm*visualBell: true
+aterm*backspacekey: ^H
+!rxvt*background:          grey30
+!rxvt*foreground:          DarkSeaGreen1
+!rxvt*cursorColor:         #00ff00
+!rxvt*pointerColor         #ff0000
+!rxvt*font:                Lucida Console-11
+!rxvt*backspacekey:        ^H
+XTerm*geometry:            100x32+100+100
+XTerm*saveLines:           4096
+XTerm*visualBell:          true
+XTerm*scrollBar:           true
+XTerm*scrollBar_right:     true

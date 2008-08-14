@@ -1,0 +1,15 @@
+[client]
+port=7885
+socket=/home/thouveni/var/run/mysql.socket
+
+[server]
+port=7885
+datadir=/home/thouveni/var/mysql
+socket=/home/thouveni/var/run/mysql.socket
+log=/home/thouveni/var/log/mysql.access.log
+pid-file=/home/thouveni/var/run/mysql.pid
+#set-variable = max_allowed_packet=5M
+
+[safe_mysqld]
+err-log=/home/thouveni/var/log/mysql.error.log
+language=french

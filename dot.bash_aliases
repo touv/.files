@@ -13,25 +13,8 @@ alias ll="ls -l"
 alias mv='mv -i'
 alias psu='ps -u thouveni'
 alias sync="rsync -CbutPr --exclude-from=/home/thouveni/.rsyncignore"
-alias osiris='ssh osiris.inist.fr'
-alias posa='ssh posa.inist.fr'
-alias sd-dev='ssh sd-dev.inist.fr'
-alias zazie='ssh zazie.inist.fr'
-alias antares='ssh antares.inist.fr'
-alias sd-int='ssh sd-int.inist.fr'
-alias webdev='sudo /etc/init.d/httpd start & sudo /etc/init.d/mysqld start'
 
 # Quelques Fonctions
-function devel2local {
-        find $HOME/usb/devel/ -name "*~"  -exec rm -f {} \;
-        find $HOME/devel/ -name "*~" -exec rm -f {} \;
-        rsync -CbutPr --delete $HOME/usb/devel/ $HOME/devel/
-}
-function devel2usb {
-        find $HOME/usb/devel/ -name "*~"  -exec rm -f {} \;
-        find $HOME/devel/ -name "*~" -exec rm -f {} \;
-        rsync -CbutPr --delete $HOME/devel/ $HOME/usb/devel/
-}
 function synchro {
 # $1 source
 # $2 destination

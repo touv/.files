@@ -1,14 +1,17 @@
 # .bashrc
 
 # Set up ls command:
-eval `/usr/bin/dircolors -b ~/.dircolors`
+if [ -x /usr/bin/dircolors ]; then
+	eval `/usr/bin/dircolors -b ~/.dircolors`
+	alias ls="ls -h --color=auto"
+	alias grep='grep --color=auto'
+	alias fgrep='fgrep --color=auto'
+	alias egrep='egrep --color=auto'
+fi
 
-#gnu pod
-export IPOD_MOUNTPOINT=/mnt/IPOD/
 
 # Set some alias
 alias rm="~/local/bin/supprime"
-alias ls="ls --color=tty"
 alias ll="ls -l"
 alias mv='mv -i'
 alias psu='ps -u thouveni'
@@ -43,6 +46,9 @@ fi
 export PATH=$HOME/local/bin:${PATH:=}
 export MANPATH=$HOME/local/man:${MANPATH:=}
 export LD_LIBRARY_PATH=$HOME/local/lib:${LD_LIBRARY_PATH:=}
+
+#gnu pod
+export IPOD_MOUNTPOINT=/mnt/IPOD/
 
 # CVS for gna.org
 export CVS_RSH=ssh

@@ -1,0 +1,2 @@
+# Patterns pour ignorer des fichiers lors de l'utilisation de l'alias sync
+*.swp

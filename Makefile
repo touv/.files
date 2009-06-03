@@ -1,6 +1,6 @@
 VIM=vim
 RM=rm
-MKDIR=mkdir
+CP=cp
 INSTALL=install
 
 
@@ -9,6 +9,7 @@ all: $(HOME)/.bash_aliases \
 	$(HOME)/.vimrc \
 	$(HOME)/.vim \
 	$(HOME)/.gitconfig \
+	$(HOME)/.rsyncignore \
 	$(HOME)/.Xresources
 
 $(HOME)/.bash_aliases: dot.bash_aliases
@@ -18,13 +19,13 @@ $(HOME)/.dircolors: dot.dircolors
 $(HOME)/.vimrc: dot.vimrc
 	$(INSTALL) $? $@
 $(HOME)/.vim: dot.vim
-	$(INSTALL) -d $? $@
+	$(CP) -Rf $? $@
 $(HOME)/.gitconfig: dot.gitconfig
+	$(INSTALL) $? $@
+$(HOME)/.rsyncignore: dot.rsyncignore
 	$(INSTALL) $? $@
 $(HOME)/.Xresources: dot.Xresources
 	$(INSTALL) $? $@
-
-
 
 
 # html: ${SRCFILES} 

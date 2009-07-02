@@ -16,6 +16,8 @@ alias ll="ls -l"
 alias mv='mv -i'
 alias psu='ps -u thouveni'
 alias sync="rsync -CbutPr --exclude-from=/home/thouveni/.rsyncignore"
+alias v="gvim --"
+alias n="nautilus ."
 
 # Quelques Fonctions
 function synchro {

@@ -1,15 +1,13 @@
 " ----------------------------------------------------------------
-" $Id$
 "
-"
-" Download <URL:http://touv.free.fr/documents/MyDotFiles/.vimrc>
+" Touv's vimrc
 "
 " ----------------------------------------------------------------
 
 " -----------------------------------------------------------
 " {{{ 1. General setup
 " -----------------------------------------------------------
-filetype plugin indent on 
+filetype plugin indent on
 set runtimepath=$HOME/.vim,$VIMRUNTIME
 
 " {{{ 1.1 Ligne trop Longues (:help wrap)
@@ -18,21 +16,23 @@ set sidescroll=5
 set listchars+=precedes:<,extends:>
 " }}}
 
-set backspace=2  " enable backspace to delete anyting (includes \n) in insert mode
-set nocompatible " On n'assura pas la compatiblité avec VI et c'est tant mieux !
-set noerrorbells " ne fait pas un bip lors d'une erreur
-set visualbell   " Fait clignoter l'écran lors d'une erreur de saisie, de commande etc...
-set showmatch " Quand on tape un ), vim montre furtivement le ( correspondant.
-set foldcolumn=2 " Ajoute une marge à gauche pour afficher les +/- des replis
-
-set encoding=utf8 " Par défaut on démarre en UTF8
+set autochdir       " Set working directory to the current file
+set backspace=2     " enable backspace to delete anyting (includes \n) in insert mode
+set nocompatible    " On n'assura pas la compatiblité avec VI et c'est tant mieux !
+set noerrorbells    " ne fait pas un bip lors d'une erreur
+set visualbell      " Fait clignoter l'écran lors d'une erreur de saisie, de commande etc...
+set showmatch       " Quand on tape un ), vim montre furtivement le ( correspondant.
+set foldcolumn=2    " Ajoute une marge à gauche pour afficher les +/- des replis
+set undolevels=2000 " Nombre maximum de changements qui peuvent être annulés
+set encoding=utf8   " Par défaut on démarre en UTF8
 
 " {{{ 1.2 Commentaires
-set com& 
+set com&
 set com^=sr:*\ -,mb:*\ \ ,el:*/ com^=sr://\ -,mb://\ \ ,el:///
 " }}}
 
 " }}}
+
 
 " -----------------------------------------------------------
 " {{{ 2 Indentation
@@ -75,27 +75,12 @@ set completeopt=menuone
 " {{{ 4. Highlighting, Colors, Fonts
 " -----------------------------------------------------------
 
-if &t_Co > 2 || has("gui_running")
-	syntax on " Active la coloration syntaxique quand c'est possible
-endif
+syntax on " Active la coloration syntaxique quand c'est possible
 
 
-if has("gui_running")
-		set co=98 		"Nombre de colonnes à afficher
-		set lines=41 		"Nombre de lignes à afficher
-
-		if has("win32")
-			set guifont=Fixedsys:h9:cANSI
-			"set guifont=Courier:h10:cANSI
-		else
-			"set gfn=-adobe-courier-medium-r-normal-*-*-140-*-*-m-*-iso8859-15
-			set guifont=Courier\ 12
-			set guioptions=gimrLtTa
-		endif
-endif
-
-syn sync minlines=10000 maxlines=10000 " ??? how many lines to sync backwards
-
+set cursorline
+hi CursorLine guibg=#FFEFFF
+set guioptions-=T " supprime la barre d'outils
 
 " }}}
 
@@ -106,16 +91,15 @@ syn sync minlines=10000 maxlines=10000 " ??? how many lines to sync backwards
 
 
 set wc=<TAB>                         " use tab for auto-expansion in menus
-set wmnu                             " show a list of all matches when tabbing a command
+set wildmenu                         " show a list of all matches when tabbing a command
 set wildmode=list:longest,list:full  " how command line completion works
 set wildignore=*.o,*.r,*.so,*.sl,*.tar,*.tgz " ignore some files for filename completion
 set su=.h,.bak,~,.o,.info,.swp,.obj  " some filetypes got lower priority
-set hi=2000                          " remember last 2000 typed commands
+set history=200                      " remember last 2000 typed commands
 set ruler                            " show cursor position below each window
 set showmode                         " shows the current status (insert, visual, ...) in statusline
 set laststatus=2                     " show always statusline of last window
 set shm=at                           " Abréviation des messages
-
 " }}}
 
 
@@ -137,7 +121,7 @@ set noequalalways  " make all windows the same size when adding/removing windows
 
 
 " -----------------------------------------------------------
-" {{{ 6.Sauvegarde 
+" {{{ 6.Sauvegarde
 " -----------------------------------------------------------
 
 set backupdir=~/.backup        " Répertoire de sauvegarde automatique
@@ -148,67 +132,68 @@ let savevers_dirs = &backupdir " Même répertoire de sauvegarde que pour le backu
 " }}}
 
 " -----------------------------------------------------------
-" {{{ 7. Ligne de commandes 
+" {{{ 7. Ligne de commandes
 " -----------------------------------------------------------
+
+
+set ttyfast                    " Indicates a fast terminal connection
+set mouse=a                    " Utilisation de la souris dans les terminaux qui le peuvent
+
 
 "if has("win32") || has("win16")
 "    set shell=C:/cygwin/bin/bash
 "    set shellcmdflag=--login\ -c
-"    set shellxquote=\" 
+"    set shellxquote=\"
 "endif
 "
-if ($OS =~"Windows")
-    let g:netrw_scp_cmd="\"c:\\Program Files\\PuTTY\\pscp.exe\" -q -batch"
-endif 
-"
+"if ($OS =~"Windows")
+"    let g:netrw_scp_cmd="\"c:\\Program Files\\PuTTY\\pscp.exe\" -q -batch"
+"endif
+" }}}
 
 
 " -----------------------------------------------------------
 " {{{ 8. Mapping
 " -----------------------------------------------------------
 
-nmap _S :%s/^\s\+//<CR> " Supprime tout les blancs en debut de ligne
+" {{{ 8.1 Mapping pour copier, couper, coller, sélectionner, annuler
 
-nmap _j :move .+1<CR> " Deplace la ligne courante vers le bas
-nmap _k :move .-2<CR> " Deplace la ligne courante vers le haut
+vmap <S-Del> "*x
+vmap <C-Insert> "*y
+map <C-a> ggVG
 
-" Converts file format to/from unix
-command Unixformat :set ff=unix
-command Dosformat :set ff=dos
+if has("gui_running")
+    " Shift-Fleche pour selectionner un bloc
+    map <S-Up> vk
+    vmap <S-Up> k
+    map <S-Down> vj
+    vmap <S-Down> j
+    map <S-Right> v
+    vmap <S-Right> l
+    map <S-Left> v
+    vmap <S-Left> h
+endif
+map <C-u> u
+" }}}
 
-" On fait tourner les tampons ...
-nnoremap <C-N> :bn!<CR>
-nnoremap <C-P> :bp!<CR>
+" {{{ 8.2 Mapping pour Onglets:
+"" }}}
 
-" Annuler aka Undo (window$'s style)
-inoremap <C-Z> <C-O>u
-noremap <C-Z> u
-
-" Refaire aka Redo (window$'s style)
-" Supprimer car on confit avec le scroll montant
-"noremap <C-Y> <C-R>
-"inoremap <C-Y> <C-O><C-R>
-
+" {{{ 8.3 Mapping pour scroller
 " Scroll vers le bas sans bouger le curseur (window$'s style)
 map <C-DOWN> <C-E>
 " Scroll vers le haut sans bouger le curseur (window$'s style)
 map <C-UP> <C-Y>
+" }}}
 
-" Tout séléctionner (window$'s style)
-noremap <C-A> gggH<C-O>G
-"inoremap <C-A> <C-O>gg<C-O>gH<C-O>G
-cnoremap <C-A> <C-C>gggH<C-O>G
+" {{{ 8.4 Mapping pour les Tampons
+nnoremap <C-PageDown> :bn!<CR>
+nnoremap <C-PageUp> :bp!<CR>
+"nnoremap <C-N> :bn!<CR>
+"nnoremap <C-P> :bp!<CR>
+"" }}}
 
-" Indentation automatique (Emacs's style)
-vnoremap <C-F>   =$
-vnoremap <tab>   =
-nnoremap <tab>   =$
-nnoremap <C-tab> mzvip=`z
-
-" Fermer fichier (tampon) (window$'s style)
-map <C-F4> :bd<cr>
-imap <C-F4> <C-O>:bd<cr>
-cmap <c-F4> <c-c>:bd<cr>
+" {{{ 8.5 Mapping des touches de fonctions
 
 " F1 : de l'aide
 nnoremap <F1> :help<Space>
@@ -221,46 +206,53 @@ map <F4> :bd!<cr>
 imap <F4> <C-O>:bd!<cr>
 cmap <F4> <c-c>:bd!<cr>
 
-
 " F6 Supprime tout les blancs en fin de ligne
-map <F6> :%s/\s\+$//<CR> 
+map <F6> :%s/\s\+$//<CR>
 
-" F7 : Mets en commentaire cf EnhancedCommentify
+" F7 : Mets en commentaire cf. EnhancedCommentify
 map <F7> <Plug>Traditionalj
 imap <F7> <esc><Plug>Traditionalji
 
-" F8 : active/désactive la navigation par tags
-nnoremap <silent> <F8> :Tlist<CR>
+" F8 : Liste des tags
+nnoremap <silent> <F8> :TlistToggle<CR>
+let Tlist_Exit_OnlyWindow = 1		" vim se ferme si il reste uniquement la fenêtre des tags
+let Tlist_Process_File_Always = 1	" activation permanente du plugin pour la barre de statut
+let Tlist_Use_Right_Window = 1		" affiche les tags sur le côté droit de l'écran
 
-
-
-if has("gui_running")
-    "set winaltkeys=menu " alt jumps to menu
-
-    set guioptions+=a " clipboard to autoselect
-
-    " Shift-Fleche pour selectionner un bloc
-    map <S-Up> vk
-    vmap <S-Up> k
-    map <S-Down> vj
-    vmap <S-Down> j
-    map <S-Right> v
-    vmap <S-Right> l
-    map <S-Left> v
-    vmap <S-Left> h
-
-    if has("win32") || has("win16")
-        " ...
+" F10 : Spell check
+function! ToggleSpell()
+    if !exists("b:spell")
+        setlocal spell spelllang=fr
+        let b:spell = 1
     else
-        " Couper aka Cut (generic's style)
-        vmap <S-Del> "*x
-
-        " Copier aka Copy (generic's style)
-        vmap <C-Insert> "*y
-        "vmap <Return> "*y"   "Return realise la copie du bloc selectionner
-        "vmap <S-Return> "*y" "Shift Return aussi
+        setlocal nospell
+        unlet b:spell
     endif
-endif
+endfunction
+ 
+nmap <F10> :call ToggleSpell()<CR>
+imap <F10> <Esc>:call ToggleSpell()<CR>a
+
+
+" }}}
+
+" {{{ 8.6 Raccourcis clavier
+
+" Indentation automatique (Emacs's style)
+vnoremap <tab>   =
+nnoremap <tab>   =$
+
+" Supprime tout les blancs en debut de ligne
+nmap _S :%s/^\s\+//<CR>
+
+" Converts file format to/from unix
+command Unixformat :set ff=unix
+command Dosformat :set ff=dos
+
+" close 
+map <C-w> :bd!<CR>
+
+" }}}
 
 " }}}
 
@@ -269,23 +261,13 @@ endif
 " {{{ 9. Plugin
 " -----------------------------------------------------------
 
-" {{{ 9.1 2html
-
-let html_use_css = 1
-command Code2html :source $VIMRUNTIME/syntax/2html.vim|
-
-"}}}
-
-
-
-" }}}
-
+" none.
 
 " -----------------------------------------------------------
 " {{{ 11. Commande Automatique
 " -----------------------------------------------------------
 if has("autocmd")
-    
+
     " {{{ 11.1 Template
     "au BufNewFile *.xsl 0r~/.vim/templates/xsl.xsl
     au BufNewFile *.xml 0r~/.vim/templates/xml.xml
@@ -293,7 +275,7 @@ if has("autocmd")
     au BufNewFile *.c 0r~/.vim/templates/c.c
     au BufNewFile *.php 0r~/.vim/templates/php.php
     " }}}
-    
+
     " {{{ 11.2 En fonction du type de fichier
     autocmd FileType text setlocal textwidth=78 nocindent
 	autocmd BufNewFile,BufRead *.t2t set ft=txt2tags
@@ -302,19 +284,19 @@ if has("autocmd")
     autocmd FileType css set smartindent
     autocmd FileType html,css set noexpandtab tabstop=2
     autocmd FileType c,cpp,slang set cindent
-    autocmd FileType php set cindent expandtab shiftwidth=4 softtabstop=4 tabstop=4 dictionary=$HOME/.vim/dictionaries/PHP.dict
+    autocmd FileType php set cindent expandtab shiftwidth=4 softtabstop=4 tabstop=4
     " }}}
-    
+
     " {{{ 11.3 En fonction du suffixe du fichier
     autocmd BufNewFile,BufRead *.pc set syntax=html ft=proc
     autocmd BufNewFile,BufRead *.xul set syntax=xml ft=xml
     " }}}
-    
+
     " {{{ 11.4 Divers
-	autocmd BufRead *\[[0-9]] set syntax=html filetype=html 
-	autocmd BufEnter * lcd %:p:h   " change to directory of current file automatically
+"    autocmd BufRead *\[[0-9]] set syntax=html filetype=html
+"    autocmd BufEnter * lcd %:p:h   " change to directory of current file automatically
     " }}}
-    
+
 endif
 
 "}}}
@@ -325,8 +307,8 @@ endif
 " -----------------------------------------------------------
 
 " {{{ 12.1 Langage C
-"let c_minlines = 200
-"let c_comment_strings = 1
+let c_minlines = 200
+let c_comment_strings = 1
 " }}}
 
 " {{{ 12.2 Langage PHP

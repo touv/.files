@@ -8,6 +8,7 @@ all: $(HOME)/.bash_aliases \
 	$(HOME)/.dircolors \
 	$(HOME)/.vimrc \
 	$(HOME)/.vim \
+	$(HOME)/.rsync \
 	$(HOME)/.gitconfig \
 	$(HOME)/.rsyncignore \
 	$(HOME)/.Xresources
@@ -19,6 +20,8 @@ $(HOME)/.dircolors: dot.dircolors
 $(HOME)/.vimrc: dot.vimrc
 	$(INSTALL) $? $@
 $(HOME)/.vim: dot.vim
+	$(CP) -Rf $? $@
+$(HOME)/.rsync: dot.rsync
 	$(CP) -Rf $? $@
 $(HOME)/.gitconfig: dot.gitconfig
 	$(INSTALL) $? $@

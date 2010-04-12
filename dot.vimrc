@@ -13,7 +13,6 @@ set runtimepath=$HOME/.vim,$VIMRUNTIME
 " {{{ 1.1 Ligne trop Longues (:help wrap)
 set nowrap
 set sidescroll=5
-set listchars+=precedes:<,extends:>
 " }}}
 
 set autochdir       " Set working directory to the current file
@@ -25,6 +24,14 @@ set showmatch       " Quand on tape un ), vim montre furtivement le ( correspond
 set foldcolumn=2    " Ajoute une marge à gauche pour afficher les +/- des replis
 set undolevels=2000 " Nombre maximum de changements qui peuvent être annulés
 set encoding=utf8   " Par défaut on démarre en UTF8
+set fileencoding=utf-8
+if version >= 700
+	set listchars=eol:$,tab:>-,trail:.,extends:>,precedes:<,nbsp:% " :help 'list
+    set nofsync " improves performance -- let OS decide when to flush disk
+else
+    set listchars=eol:$,tab:>-,trail:.,extends:>,precedes:< " : help 'list
+endif
+
 
 " {{{ 1.2 Commentaires
 set com&
@@ -55,7 +62,6 @@ set tabstop=4      " number of spaces the tab stands for
 " -----------------------------------------------------------
 " {{{ 3. Searching, Substituting, Completion
 " -----------------------------------------------------------
-
 set ignorecase    " On ignore la casse des caractères dans les recherches de chaînes.
 set scs           " No ignorecase if Uppercase chars in search
 set magic         " change the way backslashes are used in search patterns
@@ -107,10 +113,11 @@ set shm=at                           " Abréviation des messages
 " {{{ 5. window handling
 " -----------------------------------------------------------
 
-"if has("gui_running")
-"    set mousef     " Le focus suit la souris
-"    set mousemodel=popup_setpos     " Le bouton droit affiche une popup
-"endif
+if has("gui_running")
+    set mousef     " Le focus suit la souris
+    set mousemodel=popup_setpos     " Le bouton droit affiche une popup
+endif
+
 
 set wh=1           " minimal number of lines used for the current window
 set wmh=0          " minimal number of lines used for any window

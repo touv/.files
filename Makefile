@@ -10,7 +10,6 @@ all: $(HOME)/.bash_aliases \
 	$(HOME)/.vim \
 	$(HOME)/.rsync \
 	$(HOME)/.gitconfig \
-	$(HOME)/.rsyncignore \
 	$(HOME)/.Xresources
 
 $(HOME)/.bash_aliases: dot.bash_aliases
@@ -24,8 +23,6 @@ $(HOME)/.vim: dot.vim
 $(HOME)/.rsync: dot.rsync
 	$(CP) -Rf $? $@
 $(HOME)/.gitconfig: dot.gitconfig
-	$(INSTALL) $? $@
-$(HOME)/.rsyncignore: dot.rsyncignore
 	$(INSTALL) $? $@
 $(HOME)/.Xresources: dot.Xresources
 	$(INSTALL) $? $@

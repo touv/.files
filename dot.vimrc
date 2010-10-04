@@ -15,6 +15,7 @@ set nowrap
 set sidescroll=5
 " }}}
 
+set hidden          " Cache les buffers à la palce des les décharger
 set autochdir       " Set working directory to the current file
 set backspace=2     " enable backspace to delete anyting (includes \n) in insert mode
 set nocompatible    " On n'assura pas la compatiblité avec VI et c'est tant mieux !

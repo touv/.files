@@ -6,10 +6,9 @@
 	status = auto
 	branch = auto
 	interactive = auto
- 
 [alias]
-  st = status
-  di = diff
-  co = checkout
-  ci = commit
-  br = branch
+	st = status
+	di = diff
+	co = checkout
+	ci = commit
+	br = branch

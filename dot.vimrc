@@ -268,7 +268,8 @@ map <C-w> :bd!<CR>
 " {{{ 9. Plugin
 " -----------------------------------------------------------
 
-" none.
+" Active la commande :Man
+source $VIMRUNTIME/ftplugin/man.vim
 
 " -----------------------------------------------------------
 " {{{ 11. Commande Automatique

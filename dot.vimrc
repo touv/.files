@@ -291,7 +291,7 @@ if has("autocmd")
     autocmd FileType css set smartindent
     autocmd FileType html,css set noexpandtab tabstop=2
     autocmd FileType c,cpp,slang set cindent
-    autocmd FileType php set cindent expandtab shiftwidth=4 softtabstop=4 tabstop=4
+    autocmd FileType php set cindent expandtab shiftwidth=4 softtabstop=4 tabstop=4 keywordprg=pman
     " }}}
 
     " {{{ 11.3 En fonction du suffixe du fichier

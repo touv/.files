@@ -39,25 +39,25 @@ alias rm="~/local/bin/supprime"
 function synchro {
 # $1 source
 # $2 destination
-if [ "x$1" != "x" ] && [ "x$2" != "x" ]; then
-        n1=`basename $1`
-        n2=`basename $2`
-        d1=`dirname $1`
-        d2=`dirname $2`
-        p1="$d1/$n1/"
-        p2="$d2/$n2/"
-        if [ -d $p1 ] && [ -d $p2 ] && [ $n1 = $n2 ]; then
-                find $p1 -name "*~"  -exec rm -f {} \;
-                find $p2 -name "*~" -exec rm -f {} \;
+	if [ "x$1" != "x" ] && [ "x$2" != "x" ]; then
+		n1=`basename $1`
+			n2=`basename $2`
+			d1=`dirname $1`
+			d2=`dirname $2`
+			p1="$d1/$n1/"
+			p2="$d2/$n2/"
+			if [ -d $p1 ] && [ -d $p2 ] && [ $n1 = $n2 ]; then
+				find $p1 -name "*~"  -exec rm -f {} \;
+	find $p2 -name "*~" -exec rm -f {} \;
 
-                #rsync -CbutPr --delete $p1 $p2
-                rsync -vCutPr --delete $p1 $p2
-        else
-                echo "Sorry bad arguments. Try again !"
-        fi
-else
-        echo "Too few arguments. Try again !"
-fi
+	#rsync -CbutPr --delete $p1 $p2
+	rsync -vCutPr --delete $p1 $p2
+			else
+				echo "Sorry bad arguments. Try again !"
+					fi
+	else
+		echo "Too few arguments. Try again !"
+			fi
 }
 
 # STOW

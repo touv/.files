@@ -1,6 +1,6 @@
 # .bashrc
 
-# Set up ls command:
+# Activer les couleurs
 if [ -x /usr/bin/dircolors ]; then
 	eval `/usr/bin/dircolors -b ~/.dircolors`
 	alias ls="ls -h --color=auto"
@@ -9,15 +9,20 @@ if [ -x /usr/bin/dircolors ]; then
 	alias egrep='egrep --color=auto'
 fi
 
+# Tailles de fichier "humaines"
+alias du='du -h'
+alias df='df -h'
 
-# Set some alias
-alias rm="~/local/bin/supprime"
+# Raccourcis 
 alias ll="ls -l"
 alias mv='mv -i'
 alias psu='ps -u thouveni'
-alias sync="rsync -CbutPr --exclude-from=/home/thouveni/.rsyncignore"
 alias v="gvim --"
 alias n="nautilus ."
+alias sync="rsync -CbutPr --exclude-from=/home/thouveni/.rsyncignore"
+
+# Garde fou 
+alias rm="~/local/bin/supprime"
 
 # Quelques Fonctions
 function synchro {

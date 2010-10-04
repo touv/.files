@@ -8,7 +8,6 @@
 " {{{ 1. General setup
 " -----------------------------------------------------------
 filetype plugin indent on
-set runtimepath=$HOME/.vim,$VIMRUNTIME
 
 " {{{ 1.1 Ligne trop Longues (:help wrap)
 set nowrap

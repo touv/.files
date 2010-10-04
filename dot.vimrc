@@ -9,11 +9,8 @@
 " -----------------------------------------------------------
 filetype plugin indent on
 
-" {{{ 1.1 Ligne trop Longues (:help wrap)
-set nowrap
-set sidescroll=5
-" }}}
-
+set nowrap          " pas de retour à la ligne automatique
+set sidescroll=5    " (lié à nowrap) nombre minimum de colonnes qui défilent horizontalement 
 set hidden          " Cache les buffers à la palce des les décharger
 set autochdir       " Set working directory to the current file
 set backspace=2     " enable backspace to delete anyting (includes \n) in insert mode
@@ -48,13 +45,6 @@ set com^=sr:*\ -,mb:*\ \ ,el:*/ com^=sr://\ -,mb://\ \ ,el:///
 set shiftwidth=4   " Nombre d'espace pour une tabulation
 set softtabstop=4  " if non-zero, number of spaces to insert for a <tab>
 set tabstop=4      " number of spaces the tab stands for
-
-"set cinoptions={.5s,+.5s,t0,n-2,p2s,(03s,=.5s,>1s,=1s,:1s " some nice options for cindenting  by FOLKE
-"set smarttab      " a <tab> in an indent insets 'shiftwidth' spaces (not tabstop)
-"set si            " smartindenting (clever autoindenting)
-"set autoindent    " On garde d'une ligne à l'autre l'indentation d'un paragraphe
-"set expandtab     " ...
-
 
 " }}}
 
@@ -146,16 +136,6 @@ let savevers_dirs = &backupdir " Même répertoire de sauvegarde que pour le backu
 set ttyfast                    " Indicates a fast terminal connection
 set mouse=a                    " Utilisation de la souris dans les terminaux qui le peuvent
 
-
-"if has("win32") || has("win16")
-"    set shell=C:/cygwin/bin/bash
-"    set shellcmdflag=--login\ -c
-"    set shellxquote=\"
-"endif
-"
-"if ($OS =~"Windows")
-"    let g:netrw_scp_cmd="\"c:\\Program Files\\PuTTY\\pscp.exe\" -q -batch"
-"endif
 " }}}
 
 
@@ -180,11 +160,8 @@ if has("gui_running")
     map <S-Left> v
     vmap <S-Left> h
 endif
-map <C-u> u
 " }}}
 
-" {{{ 8.2 Mapping pour Onglets:
-"" }}}
 
 " {{{ 8.3 Mapping pour scroller
 " Scroll vers le bas sans bouger le curseur (window$'s style)
@@ -201,12 +178,6 @@ nnoremap <C-PageUp> :bp!<CR>
 "" }}}
 
 " {{{ 8.5 Mapping des touches de fonctions
-
-" F1 : de l'aide
-nnoremap <F1> :help<Space>
-vmap <F1> <C-C><F1>
-omap <F1> <C-C><F1>
-map! <F1> <C-C><F1>
 
 " F4 : Force la fermeture d'un tampon
 map <F4> :bd!<cr>
@@ -314,18 +285,11 @@ endif
 " {{{ 12. Spécificité pour chaque language
 " -----------------------------------------------------------
 
-" {{{ 12.1 Langage C
-let c_minlines = 200
-let c_comment_strings = 1
-" }}}
-
 " {{{ 12.2 Langage PHP
 let php_sql_query = 1
 let php_noShortTags = 1
 let php_parent_error_close = 1
 let php_parent_error_open = 1
-"let php_minlines=300
-"let php_htmlInStrings=1
 let php_folding = 1
 " }}}
 

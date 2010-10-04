@@ -149,32 +149,26 @@ vmap <S-Del> "*x
 vmap <C-Insert> "*y
 map <C-a> ggVG
 
-if has("gui_running")
-    " Shift-Fleche pour selectionner un bloc
-    map <S-Up> vk
-    vmap <S-Up> k
-    map <S-Down> vj
-    vmap <S-Down> j
-    map <S-Right> v
-    vmap <S-Right> l
-    map <S-Left> v
-    vmap <S-Left> h
-endif
 " }}}
 
-
-" {{{ 8.3 Mapping pour scroller
-" Scroll vers le bas sans bouger le curseur (window$'s style)
-map <C-DOWN> <C-E>
-" Scroll vers le haut sans bouger le curseur (window$'s style)
-map <C-UP> <C-Y>
+" {{{ 8.2 Shift-Fleche pour selectionner un bloc
+imap <S-Up> <esc>vk
+map <S-Up> vk
+vmap <S-Up> k
+imap <S-Down> <esc>vj
+map <S-Down> vj
+vmap <S-Down> j
+imap <S-Right> <esc>v
+map <S-Right> v
+vmap <S-Right> l
+imap <S-Left> <esc>v
+map <S-Left> v
+vmap <S-Left> h
 " }}}
 
 " {{{ 8.4 Mapping pour les Tampons
 nnoremap <C-PageDown> :bn!<CR>
 nnoremap <C-PageUp> :bp!<CR>
-"nnoremap <C-N> :bn!<CR>
-"nnoremap <C-P> :bp!<CR>
 "" }}}
 
 " {{{ 8.5 Mapping des touches de fonctions

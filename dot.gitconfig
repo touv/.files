@@ -12,3 +12,5 @@
 	co = checkout
 	ci = commit
 	br = branch
+[diff]
+	tool=vimdiff

@@ -9,6 +9,15 @@ if [ -x /usr/bin/dircolors ]; then
 	alias egrep='egrep --color=auto'
 fi
 
+# Vim forever
+if [ -x /usr/share/vim/vimcurrent/macros/less.sh ]; then
+	alias more=/usr/share/vim/vimcurrent/macros/less.sh
+	export MANPAGER="/bin/sh -c \"unset PAGER;col -b -x | \
+				  vim -R -c 'set ft=man nomod nolist' -c 'map q :q<CR>' \
+				  -c 'map <SPACE> <C-D>' -c 'map b <C-U>' \
+				  -c 'nmap K :Man <C-R>=expand(\\\"<cword>\\\")<CR><CR>' -\""
+fi
+
 # Tailles de fichier "humaines"
 alias du='du -h'
 alias df='df -h'
@@ -20,6 +29,8 @@ alias psu='ps -u thouveni'
 alias v="gvim --"
 alias n="nautilus ."
 alias sync="rsync -CbutPr --exclude-from=/home/thouveni/.rsyncignore"
+alias realpath='readlink -f'
+
 
 # Garde fou 
 alias rm="~/local/bin/supprime"

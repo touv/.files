@@ -18,8 +18,7 @@ $(HOME)/.dircolors: dot.dircolors
 	$(INSTALL) $? $@
 $(HOME)/.vimrc: dot.vimrc
 	$(INSTALL) $? $@
-$(HOME)/.vim: dot.vim
-	$(CP) -Rf $? $@
+	$(CP) -Rf dot.vim $(HOME)/.vim 
 $(HOME)/.rsync: dot.rsync
 	$(CP) -Rf $? $@
 $(HOME)/.gitconfig: dot.gitconfig

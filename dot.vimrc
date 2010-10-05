@@ -4,14 +4,13 @@
 "
 " ----------------------------------------------------------------
 
-" -----------------------------------------------------------
-" {{{ 1. General setup
+" {{{ General
 " -----------------------------------------------------------
 filetype plugin indent on
 
 set nowrap          " pas de retour à la ligne automatique
 set sidescroll=5    " (lié à nowrap) nombre minimum de colonnes qui défilent horizontalement 
-set hidden          " Cache les buffers à la palce des les décharger
+set hidden          " Cache les buffers à la place des les décharger
 set autochdir       " Set working directory to the current file
 set backspace=2     " enable backspace to delete anyting (includes \n) in insert mode
 set nocompatible    " On n'assura pas la compatiblité avec VI et c'est tant mieux !
@@ -20,37 +19,36 @@ set visualbell      " Fait clignoter l'écran lors d'une erreur de saisie, de com
 set showmatch       " Quand on tape un ), vim montre furtivement le ( correspondant.
 set foldcolumn=2    " Ajoute une marge à gauche pour afficher les +/- des replis
 set undolevels=2000 " Nombre maximum de changements qui peuvent être annulés
-set encoding=utf8   " Par défaut on démarre en UTF8
-set fileencoding=utf-8
 if version >= 700
 	set listchars=eol:$,tab:>-,trail:.,extends:>,precedes:<,nbsp:% " :help 'list
-    set nofsync " improves performance -- let OS decide when to flush disk
 else
     set listchars=eol:$,tab:>-,trail:.,extends:>,precedes:< " : help 'list
 endif
+" }}}
+
+" {{{ Encodage et format par défaut
+" -----------------------------------------------------------
+set encoding=utf8               
+set fileformats=unix,dos,mac   
+set fileencoding=utf-8
+" }}}
 
 
-" {{{ 1.2 Commentaires
+" {{{ Commentaires
+" -----------------------------------------------------------
 set com&
 set com^=sr:*\ -,mb:*\ \ ,el:*/ com^=sr://\ -,mb://\ \ ,el:///
 " }}}
 
-" }}}
-
-
+" {{{ Indentation
 " -----------------------------------------------------------
-" {{{ 2 Indentation
-" -----------------------------------------------------------
-
 set shiftwidth=4   " Nombre d'espace pour une tabulation
 set softtabstop=4  " if non-zero, number of spaces to insert for a <tab>
 set tabstop=4      " number of spaces the tab stands for
-
 " }}}
 
 
-" -----------------------------------------------------------
-" {{{ 3. Searching, Substituting, Completion
+" {{{ Searching, Substituting, Completion
 " -----------------------------------------------------------
 set ignorecase    " On ignore la casse des caractères dans les recherches de chaînes.
 set scs           " No ignorecase if Uppercase chars in search
@@ -60,32 +58,27 @@ set sm            " jump to matches during entering the pattern
 set hls           " highlight all matches...
 set incsearch     " ...and also during entering the pattern
 
-"set noedcompatible " !!! turn off the fucking :s///gc toggling
-set completeopt=menuone
-
-
+set completeopt+=menuone
 " }}}
 
 
+" {{{ Optimization
 " -----------------------------------------------------------
-" {{{ 4. Highlighting, Colors, Fonts
+set ttyfast       " Indicates a fast terminal connection
+set nofsync       " improves performance -- let OS decide when to flush disk
+" }}}
+
+" {{{ Highlighting, Colors, Fonts
 " -----------------------------------------------------------
-
-syntax on " Active la coloration syntaxique quand c'est possible
-
-
+syntax on                       " Active la coloration syntaxique quand c'est possible
 set cursorline
 hi CursorLine guibg=#FFEFFF
-set guioptions-=T " supprime la barre d'outils
-
+set guioptions-=T               " supprime la barre d'outils
 " }}}
 
 
+" {{{ Statusline
 " -----------------------------------------------------------
-" {{{ 4. Statusline, Menu
-" -----------------------------------------------------------
-
-
 set wc=<TAB>                         " use tab for auto-expansion in menus
 set wildmenu                         " show a list of all matches when tabbing a command
 set wildmode=list:longest,list:full  " how command line completion works
@@ -99,59 +92,40 @@ set shm=at                           " Abréviation des messages
 " }}}
 
 
+" {{{ Souris
 " -----------------------------------------------------------
-" {{{ 5. window handling
-" -----------------------------------------------------------
-
 if has("gui_running")
-    set mousef     " Le focus suit la souris
+    set mousef                      " Le focus suit la souris
     set mousemodel=popup_setpos     " Le bouton droit affiche une popup
 endif
+set mouse=a                         " Utilisation de la souris dans les terminaux qui le peuvent
+" }}}
 
-
+" {{{ Fenetres
+" -----------------------------------------------------------
 set wh=1           " minimal number of lines used for the current window
 set wmh=0          " minimal number of lines used for any window
 set noequalalways  " make all windows the same size when adding/removing windows
 "set splitbelow     "a new window is put below the current one
-
 " }}}
 
-
+" {{{ Sauvegarde
 " -----------------------------------------------------------
-" {{{ 6.Sauvegarde
-" -----------------------------------------------------------
-
 set backupdir=~/.backup        " Répertoire de sauvegarde automatique
 set backup                     " On active la sauvagarde
 let savevers_dirs = &backupdir " Même répertoire de sauvegarde que pour le backup classique
 "set updatecount=0              " Supprime l'utilisation du fichier d'échange
-
 " }}}
 
-" -----------------------------------------------------------
-" {{{ 7. Ligne de commandes
-" -----------------------------------------------------------
-
-
-set ttyfast                    " Indicates a fast terminal connection
-set mouse=a                    " Utilisation de la souris dans les terminaux qui le peuvent
-
-" }}}
-
-
-" -----------------------------------------------------------
-" {{{ 8. Mapping
+" {{{ Mapping
 " -----------------------------------------------------------
 
-" {{{ 8.1 Mapping pour copier, couper, coller, sélectionner, annuler
-
+" copier, coller 
 vmap <S-Del> "*x
 vmap <C-Insert> "*y
 map <C-a> ggVG
 
-" }}}
-
-" {{{ 8.2 Shift-Fleche pour selectionner un bloc
+" Shift-Fleche pour sélectionner un bloc
 imap <S-Up> <esc>vk
 map <S-Up> vk
 vmap <S-Up> k
@@ -164,24 +138,20 @@ vmap <S-Right> l
 imap <S-Left> <esc>v
 map <S-Left> v
 vmap <S-Left> h
-" }}}
 
-" {{{ 8.4 Mapping pour les Tampons
+" CTRL+UP / CTRL+DOWN pour circuler entre les Tampons
 nnoremap <C-PageDown> :bn!<CR>
 nnoremap <C-PageUp> :bp!<CR>
-"" }}}
 
-" {{{ 8.5 Mapping des touches de fonctions
-
-" F4 : Force la fermeture d'un tampon
+" F4 : fermeture forcer d'un tampon
 map <F4> :bd!<cr>
 imap <F4> <C-O>:bd!<cr>
 cmap <F4> <c-c>:bd!<cr>
 
-" F6 Supprime tout les blancs en fin de ligne
+" F6 : Supprime tout les blancs en fin de ligne
 map <F6> :%s/\s\+$//<CR>
 
-" F7 : Mets en commentaire cf. EnhancedCommentify
+" F7 : Mettre en commentaire cf. EnhancedCommentify
 map <F7> <Plug>Traditionalj
 imap <F7> <esc><Plug>Traditionalji
 
@@ -201,14 +171,8 @@ function! ToggleSpell()
         unlet b:spell
     endif
 endfunction
- 
 nmap <F10> :call ToggleSpell()<CR>
 imap <F10> <Esc>:call ToggleSpell()<CR>a
-
-
-" }}}
-
-" {{{ 8.6 Raccourcis clavier
 
 " Indentation automatique (Emacs's style)
 vnoremap <tab>   =
@@ -226,22 +190,19 @@ map <C-w> :bd!<CR>
 
 " }}}
 
+
+" {{{ Plugin
+" -----------------------------------------------------------
+
+source $VIMRUNTIME/ftplugin/man.vim          " Active la commande :Man
+
 " }}}
 
-
-" -----------------------------------------------------------
-" {{{ 9. Plugin
-" -----------------------------------------------------------
-
-" Active la commande :Man
-source $VIMRUNTIME/ftplugin/man.vim
-
-" -----------------------------------------------------------
-" {{{ 11. Commande Automatique
+" {{{ Commande Automatique
 " -----------------------------------------------------------
 if has("autocmd")
 
-    " {{{ 11.1 Template
+    " {{{ Template
     "au BufNewFile *.xsl 0r~/.vim/templates/xsl.xsl
     au BufNewFile *.xml 0r~/.vim/templates/xml.xml
     au BufNewFile *.html 0r~/.vim/templates/html.html
@@ -249,18 +210,17 @@ if has("autocmd")
     au BufNewFile *.php 0r~/.vim/templates/php.php
     " }}}
 
-    " {{{ 11.2 En fonction du type de fichier
+    " {{{ Configuration par type
     autocmd FileType text setlocal textwidth=78 nocindent
 	autocmd BufNewFile,BufRead *.t2t set ft=txt2tags
 	autocmd BufNewFile,BufRead *.rst set syntax=rest
-    autocmd FileType html set formatoptions+=tl
-    autocmd FileType css set smartindent
-    autocmd FileType html,css set noexpandtab tabstop=2
+    autocmd FileType css set smartindent noexpandtab tabstop=2
     autocmd FileType c,cpp,slang set cindent
-    autocmd FileType php set cindent expandtab shiftwidth=4 softtabstop=4 tabstop=4 keywordprg=pman
-    " }}}
+    autocmd FileType html set formatoptions+=tl noexpandtab tabstop=2
+    autocmd FileType php set cindent expandtab shiftwidth=4 softtabstop=4 tabstop=4 keywordprg=pman makeprg=php\ -l\ % errorformat=%m\ in\ %f\ on\ line\ %l
+	" }}}
 
-    " {{{ 11.3 En fonction du suffixe du fichier
+    " {{{ Cas particulier
     autocmd BufNewFile,BufRead *.pc set syntax=html ft=proc
     autocmd BufNewFile,BufRead *.xul set syntax=xml ft=xml
     " }}}
@@ -275,19 +235,14 @@ endif
 "}}}
 
 
+" {{{ Pour PHP
 " -----------------------------------------------------------
-" {{{ 12. Spécificité pour chaque language
-" -----------------------------------------------------------
-
-" {{{ 12.2 Langage PHP
 let php_sql_query = 1
 let php_noShortTags = 1
 let php_parent_error_close = 1
 let php_parent_error_open = 1
 let php_folding = 1
 " }}}
-
-"}}}
 
 
 " vim:fdm=marker

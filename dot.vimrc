@@ -139,9 +139,14 @@ imap <S-Left> <esc>v
 map <S-Left> v
 vmap <S-Left> h
 
-" CTRL+UP / CTRL+DOWN pour circuler entre les Tampons
+" CTRL+PAGEUP / CTRL+PAGEDOWN pour circuler entre les Tampons
 nnoremap <C-PageDown> :bn!<CR>
 nnoremap <C-PageUp> :bp!<CR>
+
+" CTRL+UP / CRTL+DOWN sur une sélection déplace celle-ci (nécessite le plugin unimpared)
+" http://vimcats.org/e/26
+vmap <C-Up> [egv
+vmap <C-Down> ]egv 
 
 " F4 : fermeture forcer d'un tampon
 map <F4> :bd!<cr>
@@ -184,9 +189,6 @@ nmap _S :%s/^\s\+//<CR>
 " Converts file format to/from unix
 command Unixformat :set ff=unix
 command Dosformat :set ff=dos
-
-" close 
-map <C-w> :bd!<CR>
 
 " }}}
 

@@ -2,7 +2,7 @@
 "
 " Touv's vimrc
 "
-" ----------------------------------------------------------------
+" -----------------------------------------------------------
 
 " {{{ General
 " -----------------------------------------------------------
@@ -19,11 +19,15 @@ set visualbell      " Fait clignoter l'écran lors d'une erreur de saisie, de com
 set showmatch       " Quand on tape un ), vim montre furtivement le ( correspondant.
 set foldcolumn=2    " Ajoute une marge à gauche pour afficher les +/- des replis
 set undolevels=2000 " Nombre maximum de changements qui peuvent être annulés
-if version >= 700
-	set listchars=eol:$,tab:>-,trail:.,extends:>,precedes:<,nbsp:% " :help 'list
-else
-    set listchars=eol:$,tab:>-,trail:.,extends:>,precedes:< " : help 'list
-endif
+" }}}
+
+" {{{ Caractères invisibles
+" -----------------------------------------------------------
+" Use the same symbols as TextMate for tabstops and EOLs
+set listchars=eol:¬,tab:|,trail:.,extends:>,precedes:<,nbsp:%
+"Invisible character colors
+highlight NonText guifg=#4a4a59
+highlight SpecialKey guifg=#4a4a59
 " }}}
 
 " {{{ Encodage et format par défaut

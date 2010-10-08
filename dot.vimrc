@@ -9,7 +9,7 @@
 filetype plugin indent on
 
 set nowrap          " pas de retour à la ligne automatique
-set sidescroll=5    " (lié à nowrap) nombre minimum de colonnes qui défilent horizontalement 
+set sidescroll=5    " (lié à nowrap) nombre minimum de colonnes qui défilent horizontalement
 set hidden          " Cache les buffers à la place des les décharger
 set autochdir       " Set working directory to the current file
 set backspace=2     " enable backspace to delete anyting (includes \n) in insert mode
@@ -24,7 +24,7 @@ set undolevels=2000 " Nombre maximum de changements qui peuvent être annulés
 " {{{ Caractères invisibles
 " -----------------------------------------------------------
 " Use the same symbols as TextMate for tabstops and EOLs
-set listchars=eol:¬,tab:|,trail:.,extends:>,precedes:<,nbsp:%
+set listchars=eol:¬,tab:^\ ,trail:.,extends:>,precedes:<,nbsp:%
 "Invisible character colors
 highlight NonText guifg=#4a4a59
 highlight SpecialKey guifg=#4a4a59
@@ -32,9 +32,9 @@ highlight SpecialKey guifg=#4a4a59
 
 " {{{ Encodage et format par défaut
 " -----------------------------------------------------------
-set encoding=utf8               
-set fileformats=unix,dos,mac   
-set fileencoding=utf-8
+"set encoding=utf8
+set fileformats=unix,dos,mac
+"set fileencoding=utf-8
 " }}}
 
 
@@ -124,7 +124,7 @@ let savevers_dirs = &backupdir " Même répertoire de sauvegarde que pour le backu
 " {{{ Mapping
 " -----------------------------------------------------------
 
-" copier, coller 
+" copier, coller
 vmap <S-Del> "*x
 vmap <C-Insert> "*y
 map <C-a> ggVG
@@ -150,7 +150,7 @@ nnoremap <C-PageUp> :bp!<CR>
 " CTRL+UP / CRTL+DOWN sur une sélection déplace celle-ci (nécessite le plugin unimpared)
 " http://vimcats.org/e/26
 vmap <C-Up> [egv
-vmap <C-Down> ]egv 
+vmap <C-Down> ]egv
 
 " F4 : fermeture forcer d'un tampon
 map <F4> :bd!<cr>

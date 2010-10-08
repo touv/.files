@@ -49,6 +49,7 @@ set com^=sr:*\ -,mb:*\ \ ,el:*/ com^=sr://\ -,mb://\ \ ,el:///
 set shiftwidth=4   " Nombre d'espace pour une tabulation
 set softtabstop=4  " if non-zero, number of spaces to insert for a <tab>
 set tabstop=4      " number of spaces the tab stands for
+set expandtab      " Tabulation génére des espaces
 " }}}
 
 
@@ -158,7 +159,7 @@ imap <F4> <C-O>:bd!<cr>
 cmap <F4> <c-c>:bd!<cr>
 
 " F6 : Supprime tout les blancs en fin de ligne
-map <F6> :%s/\s\+$//<CR>
+map <F6> :%s/\s\+$//e<CR>
 
 " F7 : Mettre en commentaire cf. EnhancedCommentify
 map <F7> <Plug>Traditionalj
@@ -218,17 +219,18 @@ if has("autocmd")
 
     " {{{ Configuration par type
     autocmd FileType text setlocal textwidth=78 nocindent
-	autocmd BufNewFile,BufRead *.t2t set ft=txt2tags
-	autocmd BufNewFile,BufRead *.rst set syntax=rest
-    autocmd FileType css set smartindent noexpandtab tabstop=2
-    autocmd FileType c,cpp,slang set cindent
-    autocmd FileType html set formatoptions+=tl noexpandtab tabstop=2
-    autocmd FileType php set cindent expandtab shiftwidth=4 softtabstop=4 tabstop=4 keywordprg=pman makeprg=php\ -l\ % errorformat=%m\ in\ %f\ on\ line\ %l
+    autocmd FileType c,cpp,slang setlocal cindent
+    autocmd FileType css setlocal smartindent expandtab ts=2 sts=2 sw=2
+    autocmd FileType html setlocal formatoptions+=tl expandtab ts=2 sts=2 sw=2
+    autocmd FileType javascript setlocal formatoptions+=tl noexpandtab ts=4 sts=4 sw=4
+    autocmd FileType php setlocal cindent expandtab  ts=4 sts=4 sw=4 keywordprg=pman makeprg=php\ -l\ % errorformat=%m\ in\ %f\ on\ line\ %l
 	" }}}
 
-    " {{{ Cas particulier
+    " {{{ Traitement des extentions particulières
+	autocmd BufNewFile,BufRead *.t2t setfiletype txt2tags
+	autocmd BufNewFile,BufRead *.rss,*.atom,*.xul setfiletype xml
+	autocmd BufNewFile,BufRead *.rst set syntax=rest
     autocmd BufNewFile,BufRead *.pc set syntax=html ft=proc
-    autocmd BufNewFile,BufRead *.xul set syntax=xml ft=xml
     " }}}
 
     " {{{ 11.4 Divers

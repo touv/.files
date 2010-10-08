@@ -18,6 +18,7 @@ set visualbell      " Fait clignoter l'écran lors d'une erreur de saisie, de com
 set showmatch       " Quand on tape un ), vim montre furtivement le ( correspondant.
 set foldcolumn=2    " Ajoute une marge à gauche pour afficher les +/- des replis
 set undolevels=2000 " Nombre maximum de changements qui peuvent être annulés
+set spelllang=fr_fr " Langue de correction par défaut
 " }}}
 
 
@@ -181,17 +182,8 @@ let Tlist_Process_File_Always = 1	" activation permanente du plugin pour la barr
 let Tlist_Use_Right_Window = 1		" affiche les tags sur le côté droit de l'écran
 
 " F10 : Spell check
-function! ToggleSpell()
-    if !exists("b:spell")
-        setlocal spell spelllang=fr
-        let b:spell = 1
-    else
-        setlocal nospell
-        unlet b:spell
-    endif
-endfunction
-nmap <F10> :call ToggleSpell()<CR>
-imap <F10> <Esc>:call ToggleSpell()<CR>a
+nmap <F10> :set spell!<CR>
+imap <F10> <Esc>:set spell!<CR>a
 
 " Indentation automatique (Emacs's style)
 vnoremap <tab>   =

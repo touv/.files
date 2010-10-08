@@ -8,8 +8,7 @@
 " -----------------------------------------------------------
 filetype plugin indent on
 
-set nowrap          " pas de retour à la ligne automatique
-set sidescroll=5    " (lié à nowrap) nombre minimum de colonnes qui défilent horizontalement
+
 set hidden          " Cache les buffers à la place des les décharger
 set autochdir       " Set working directory to the current file
 set backspace=2     " enable backspace to delete anyting (includes \n) in insert mode
@@ -19,6 +18,16 @@ set visualbell      " Fait clignoter l'écran lors d'une erreur de saisie, de com
 set showmatch       " Quand on tape un ), vim montre furtivement le ( correspondant.
 set foldcolumn=2    " Ajoute une marge à gauche pour afficher les +/- des replis
 set undolevels=2000 " Nombre maximum de changements qui peuvent être annulés
+" }}}
+
+
+" {{{ Césure
+" -----------------------------------------------------------
+set nowrap          " pas de retour à la ligne automatique
+set sidescroll=5    " (lié à nowrap) nombre minimum de colonnes qui défilent horizontalement
+"set foldcolumn+=a   " reformatage automatique 
+"set textwidth=80    " largeur du text
+"set wrapmargin=2   " Marge avant coupure
 " }}}
 
 " {{{ Caractères invisibles
@@ -32,9 +41,9 @@ highlight SpecialKey guifg=#4a4a59
 
 " {{{ Encodage et format par défaut
 " -----------------------------------------------------------
-"set encoding=utf8
+set encoding=utf8
 set fileformats=unix,dos,mac
-"set fileencoding=utf-8
+set fileencoding=utf-8
 " }}}
 
 

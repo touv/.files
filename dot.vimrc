@@ -3,48 +3,50 @@
 " Touv's vimrc
 "
 " -----------------------------------------------------------
+" {{{ Encodage et format par dÃ©faut
+" -----------------------------------------------------------
+set encoding=utf8
+set fileformats=unix,dos,mac
+set fileencoding=utf-8
+scriptencoding utf-8
+" }}}
+"
+"
 
 " {{{ General
 " -----------------------------------------------------------
 filetype plugin indent on
 
 
-set hidden          " Cache les buffers à la place des les décharger
+set hidden          " Cache les buffers Ã  la place des les dÃ©charger
 set autochdir       " Set working directory to the current file
 set backspace=2     " enable backspace to delete anyting (includes \n) in insert mode
-set nocompatible    " On n'assura pas la compatiblité avec VI et c'est tant mieux !
+set nocompatible    " On n'assura pas la compatiblitÃ© avec VI et c'est tant mieux !
 set noerrorbells    " ne fait pas un bip lors d'une erreur
-set visualbell      " Fait clignoter l'écran lors d'une erreur de saisie, de commande etc...
+set visualbell      " Fait clignoter l'Ã©cran lors d'une erreur de saisie, de commande etc...
 set showmatch       " Quand on tape un ), vim montre furtivement le ( correspondant.
-set foldcolumn=2    " Ajoute une marge à gauche pour afficher les +/- des replis
-set undolevels=2000 " Nombre maximum de changements qui peuvent être annulés
-set spelllang=fr_fr " Langue de correction par défaut
+set foldcolumn=2    " Ajoute une marge Ã  gauche pour afficher les +/- des replis
+set undolevels=2000 " Nombre maximum de changements qui peuvent Ãªtre annulÃ©s
+set spelllang=fr_fr " Langue de correction par dÃ©faut
 " }}}
 
 
-" {{{ Césure
+" {{{ CÃ©sure
 " -----------------------------------------------------------
-set nowrap          " pas de retour à la ligne automatique
-set sidescroll=5    " (lié à nowrap) nombre minimum de colonnes qui défilent horizontalement
+set nowrap          " pas de retour Ã  la ligne automatique
+set sidescroll=5    " (liÃ© Ã  nowrap) nombre minimum de colonnes qui dÃ©filent horizontalement
 "set foldcolumn+=a   " reformatage automatique 
 "set textwidth=80    " largeur du text
 "set wrapmargin=2   " Marge avant coupure
 " }}}
 
-" {{{ Caractères invisibles
+" {{{ CaractÃ¨res invisibles
 " -----------------------------------------------------------
 " Use the same symbols as TextMate for tabstops and EOLs
-set listchars=eol:¬,tab:^\ ,trail:.,extends:>,precedes:<,nbsp:%
+set listchars=eol:Â¬,tab:â–¸\ ,trail:Â·,precedes:Â«,extends:Â»,nbsp:%
 "Invisible character colors
 highlight NonText guifg=#4a4a59
 highlight SpecialKey guifg=#4a4a59
-" }}}
-
-" {{{ Encodage et format par défaut
-" -----------------------------------------------------------
-set encoding=utf8
-set fileformats=unix,dos,mac
-set fileencoding=utf-8
 " }}}
 
 
@@ -59,13 +61,13 @@ set com^=sr:*\ -,mb:*\ \ ,el:*/ com^=sr://\ -,mb://\ \ ,el:///
 set shiftwidth=4   " Nombre d'espace pour une tabulation
 set softtabstop=4  " if non-zero, number of spaces to insert for a <tab>
 set tabstop=4      " number of spaces the tab stands for
-set expandtab      " Tabulation génére des espaces
+set expandtab      " Tabulation gÃ©nÃ©re des espaces
 " }}}
 
 
 " {{{ Searching, Substituting, Completion
 " -----------------------------------------------------------
-set ignorecase    " On ignore la casse des caractères dans les recherches de chaînes.
+set ignorecase    " On ignore la casse des caractÃ¨res dans les recherches de chaÃ®nes.
 set scs           " No ignorecase if Uppercase chars in search
 set magic         " change the way backslashes are used in search patterns
 set wrapscan      " begin search at top when EOF reached
@@ -103,7 +105,7 @@ set history=200                      " remember last 2000 typed commands
 set ruler                            " show cursor position below each window
 set showmode                         " shows the current status (insert, visual, ...) in statusline
 set laststatus=2                     " show always statusline of last window
-set shm=at                           " Abréviation des messages
+set shm=at                           " AbrÃ©viation des messages
 " }}}
 
 
@@ -126,10 +128,10 @@ set noequalalways  " make all windows the same size when adding/removing windows
 
 " {{{ Sauvegarde
 " -----------------------------------------------------------
-set backupdir=~/.backup        " Répertoire de sauvegarde automatique
+set backupdir=~/.backup        " RÃ©pertoire de sauvegarde automatique
 set backup                     " On active la sauvagarde
-let savevers_dirs = &backupdir " Même répertoire de sauvegarde que pour le backup classique
-"set updatecount=0              " Supprime l'utilisation du fichier d'échange
+let savevers_dirs = &backupdir " MÃªme rÃ©pertoire de sauvegarde que pour le backup classique
+"set updatecount=0              " Supprime l'utilisation du fichier d'Ã©change
 " }}}
 
 " {{{ Mapping
@@ -140,7 +142,7 @@ vmap <S-Del> "*x
 vmap <C-Insert> "*y
 map <C-a> ggVG
 
-" Shift-Fleche pour sélectionner un bloc
+" Shift-Fleche pour sÃ©lectionner un bloc
 imap <S-Up> <esc>vk
 map <S-Up> vk
 vmap <S-Up> k
@@ -158,7 +160,7 @@ vmap <S-Left> h
 nnoremap <C-PageDown> :bn!<CR>
 nnoremap <C-PageUp> :bp!<CR>
 
-" CTRL+UP / CRTL+DOWN sur une sélection déplace celle-ci (nécessite le plugin unimpared)
+" CTRL+UP / CRTL+DOWN sur une sÃ©lection dÃ©place celle-ci (nÃ©cessite le plugin unimpared)
 " http://vimcats.org/e/26
 vmap <C-Up> [egv
 vmap <C-Down> ]egv
@@ -177,9 +179,9 @@ imap <F7> <esc><Plug>Traditionalji
 
 " F8 : Liste des tags
 nnoremap <silent> <F8> :TlistToggle<CR>
-let Tlist_Exit_OnlyWindow = 1		" vim se ferme si il reste uniquement la fenêtre des tags
+let Tlist_Exit_OnlyWindow = 1		" vim se ferme si il reste uniquement la fenÃªtre des tags
 let Tlist_Process_File_Always = 1	" activation permanente du plugin pour la barre de statut
-let Tlist_Use_Right_Window = 1		" affiche les tags sur le côté droit de l'écran
+let Tlist_Use_Right_Window = 1		" affiche les tags sur le cÃ´tÃ© droit de l'Ã©cran
 
 " F10 : Spell check
 nmap <F10> :set spell!<CR>
@@ -225,18 +227,18 @@ if has("autocmd")
     autocmd FileType html setlocal formatoptions+=tl expandtab ts=2 sts=2 sw=2
     autocmd FileType javascript setlocal formatoptions+=tl noexpandtab ts=4 sts=4 sw=4
     autocmd FileType php setlocal cindent expandtab  ts=4 sts=4 sw=4 keywordprg=pman makeprg=php\ -l\ % errorformat=%m\ in\ %f\ on\ line\ %l
-	" }}}
+    " }}}
 
-    " {{{ Traitement des extentions particulières
-	autocmd BufNewFile,BufRead *.t2t setfiletype txt2tags
-	autocmd BufNewFile,BufRead *.rss,*.atom,*.xul setfiletype xml
-	autocmd BufNewFile,BufRead *.rst set syntax=rest
+    " {{{ Traitement des extentions particuliÃ¨res
+    autocmd BufNewFile,BufRead *.t2t setfiletype txt2tags
+    autocmd BufNewFile,BufRead *.rss,*.atom,*.xul setfiletype xml
+    autocmd BufNewFile,BufRead *.rst set syntax=rest
     autocmd BufNewFile,BufRead *.pc set syntax=html ft=proc
     " }}}
 
     " {{{ 11.4 Divers
-"    autocmd BufRead *\[[0-9]] set syntax=html filetype=html
-"    autocmd BufEnter * lcd %:p:h   " change to directory of current file automatically
+    "    autocmd BufRead *\[[0-9]] set syntax=html filetype=html
+    "    autocmd BufEnter * lcd %:p:h   " change to directory of current file automatically
     " }}}
 
 endif

@@ -10,8 +10,6 @@ set fileformats=unix,dos,mac
 set fileencoding=utf-8
 scriptencoding utf-8
 " }}}
-"
-"
 
 " {{{ General
 " -----------------------------------------------------------
@@ -29,7 +27,6 @@ set foldcolumn=2    " Ajoute une marge à gauche pour afficher les +/- des repli
 set undolevels=2000 " Nombre maximum de changements qui peuvent être annulés
 set spelllang=fr_fr " Langue de correction par défaut
 " }}}
-
 
 " {{{ Césure
 " -----------------------------------------------------------
@@ -49,7 +46,6 @@ highlight NonText guifg=#4a4a59
 highlight SpecialKey guifg=#4a4a59
 " }}}
 
-
 " {{{ Commentaires
 " -----------------------------------------------------------
 set com&
@@ -64,7 +60,6 @@ set tabstop=4      " number of spaces the tab stands for
 set expandtab      " Tabulation génére des espaces
 " }}}
 
-
 " {{{ Searching, Substituting, Completion
 " -----------------------------------------------------------
 set ignorecase    " On ignore la casse des caractères dans les recherches de chaînes.
@@ -77,7 +72,6 @@ set incsearch     " ...and also during entering the pattern
 
 set completeopt+=menuone
 " }}}
-
 
 " {{{ Optimization
 " -----------------------------------------------------------
@@ -93,7 +87,6 @@ hi CursorLine guibg=#FFEFFF
 set guioptions-=T               " supprime la barre d'outils
 " }}}
 
-
 " {{{ Statusline
 " -----------------------------------------------------------
 set wc=<TAB>                         " use tab for auto-expansion in menus
@@ -107,7 +100,6 @@ set showmode                         " shows the current status (insert, visual,
 set laststatus=2                     " show always statusline of last window
 set shm=at                           " Abréviation des messages
 " }}}
-
 
 " {{{ Souris
 " -----------------------------------------------------------
@@ -164,6 +156,9 @@ nnoremap <C-PageUp> :bp!<CR>
 " http://vimcats.org/e/26
 vmap <C-Up> [egv
 vmap <C-Down> ]egv
+" CTRL+LEFT / CTRL+RIGHT sur une sélection indente celle-ci
+vmap <C-Left> <gv
+vmap <C-Right> >gv
 
 " F4 : fermeture forcer d'un tampon
 map <F4> :bd!<cr>
@@ -199,7 +194,6 @@ command Unixformat :set ff=unix
 command Dosformat :set ff=dos
 
 " }}}
-
 
 " {{{ Plugin
 " -----------------------------------------------------------
@@ -245,7 +239,6 @@ endif
 
 "}}}
 
-
 " {{{ Pour PHP
 " -----------------------------------------------------------
 let php_sql_query = 1
@@ -254,6 +247,5 @@ let php_parent_error_close = 1
 let php_parent_error_open = 1
 let php_folding = 1
 " }}}
-
 
 " vim:fdm=marker

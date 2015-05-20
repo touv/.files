@@ -7,23 +7,22 @@ INSTALL=install
 all: $(HOME)/.bash_aliases \
 	$(HOME)/.dircolors \
 	$(HOME)/.vimrc \
-	$(HOME)/.vim \
 	$(HOME)/.rsync \
 	$(HOME)/.gitconfig \
 	$(HOME)/.Xresources
 
-$(HOME)/.bash_aliases: dot.bash_aliases
+$(HOME)/.bash_aliases: bash_aliases
 	$(INSTALL) $? $@
-$(HOME)/.dircolors: dot.dircolors
+$(HOME)/.dircolors: dircolors
 	$(INSTALL) $? $@
-$(HOME)/.vimrc: dot.vimrc
+$(HOME)/.vimrc: vimrc
 	$(INSTALL) $? $@
-	$(CP) -Rf dot.vim/* $(HOME)/.vim/ 
-$(HOME)/.rsync: dot.rsync
+	$(CP) -Rf vim/* $(HOME)/.vim/ 
+$(HOME)/.rsync: rsync
 	$(CP) -Rf $? $@
-$(HOME)/.gitconfig: dot.gitconfig
+$(HOME)/.gitconfig: gitconfig
 	$(INSTALL) $? $@
-$(HOME)/.Xresources: dot.Xresources
+$(HOME)/.Xresources: Xresources
 	$(INSTALL) $? $@
 
 

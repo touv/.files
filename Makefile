@@ -15,6 +15,10 @@ $(HOME)/.rsync: rsync
 	ln -s `pwd`/$? $@
 $(HOME)/.gitconfig: gitconfig
 	ln -s `pwd`/$? $@
+$(HOME)/.jshintrc: jshintrc
+	ln -s `pwd`/$? $@
+$(HOME)/.npmrc: npmrc
+	ln -s `pwd`/$? $@
 #$(HOME)/.Xresources: Xresources
 #	$(INSTALL) $? $@
 

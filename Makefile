@@ -1,29 +1,22 @@
 VIM=vim
 RM=rm
-CP=cp
+CP="cp -Rf"
+LN=ln -s
 INSTALL=install
 
 
-all: $(HOME)/.bash_aliases \
-	$(HOME)/.dircolors \
-	$(HOME)/.vimrc \
-	$(HOME)/.rsync \
-	$(HOME)/.gitconfig \
-	$(HOME)/.Xresources
+all: $(HOME)/.rsync  $(HOME)/.gitconfig 
 
-$(HOME)/.bash_aliases: bash_aliases
-	$(INSTALL) $? $@
-$(HOME)/.dircolors: dircolors
-	$(INSTALL) $? $@
-$(HOME)/.vimrc: vimrc
-	$(INSTALL) $? $@
-	$(CP) -Rf vim/* $(HOME)/.vim/ 
+#$(HOME)/.bash_aliases: bash_aliases
+#	$(INSTALL) $? $@
+#$(HOME)/.dircolors: dircolors
+#	$(INSTALL) $? $@
 $(HOME)/.rsync: rsync
-	$(CP) -Rf $? $@
+	ln -s `pwd`/$? $@
 $(HOME)/.gitconfig: gitconfig
-	$(INSTALL) $? $@
-$(HOME)/.Xresources: Xresources
-	$(INSTALL) $? $@
+	ln -s `pwd`/$? $@
+#$(HOME)/.Xresources: Xresources
+#	$(INSTALL) $? $@
 
 
 # html: ${SRCFILES} 

@@ -5,7 +5,7 @@ LN=ln -s
 INSTALL=install
 
 
-all: $(HOME)/.rsync  $(HOME)/.gitconfig 
+all: $(HOME)/.rsync $(HOME)/.gitconfig $(HOME)/.jshintrc
 
 #$(HOME)/.bash_aliases: bash_aliases
 #	$(INSTALL) $? $@
@@ -17,13 +17,11 @@ $(HOME)/.gitconfig: gitconfig
 	ln -s `pwd`/$? $@
 $(HOME)/.jshintrc: jshintrc
 	ln -s `pwd`/$? $@
-$(HOME)/.npmrc: npmrc
-	ln -s `pwd`/$? $@
 #$(HOME)/.Xresources: Xresources
 #	$(INSTALL) $? $@
 
 
-# html: ${SRCFILES} 
+# html: ${SRCFILES}
 #     @list='$?'; for p in $$list; do \
 #       if test -f $$p; then \
 #         echo "To html... $$p ";  \

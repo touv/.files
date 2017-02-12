@@ -18,5 +18,8 @@
 	tool=meld
 [push]
 	default = matching
+[user]
+	email = nthouvenin@gmail.com
+	name = Nicolas Thouvenin
 [credential]
-	helper = cache
+	helper = cache --timeout=21600

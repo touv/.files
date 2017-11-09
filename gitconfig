@@ -1,6 +1,6 @@
-; [user]
-;     name = Nicolas Thouvenin
-;     email = nthouvenin@gmail.com
+[user]
+	email = nthouvenin@gmail.com
+	name = Nicolas Thouvenin
 [color]
 	diff = auto
 	status = auto
@@ -9,17 +9,16 @@
 	ui = auto
 [alias]
 	st = status
-	di = diff
-	co = checkout
-	ci = commit
 	br = branch
+	ck = checkout
+	amend = commit --amend
+	undo = git reset --soft HEAD^
+	master = checkout master
+	logger = log --pretty=oneline --abbrev-commit --graph --decorate
 [diff]
 #	tool=vimdiff
 	tool=meld
 [push]
 	default = matching
-[user]
-	email = nthouvenin@gmail.com
-	name = Nicolas Thouvenin
 [credential]
-	helper = cache --timeout=21600
+	helper = cache --timeout=3600
